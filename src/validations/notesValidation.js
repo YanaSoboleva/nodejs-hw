@@ -14,8 +14,8 @@ export const getAllNotesSchema = {
 export const createNoteSchema = {
     [Segments.BODY]: Joi.object({
     title: Joi.string().min(1).required(),
-    content: Joi.string().allow(''),
-    tag: Joi.string().valid(...TAGS),
+    content: Joi.string().allow('').optional(),
+    tag: Joi.string().valid(...TAGS).optional(),
   }),
 };
 
@@ -23,7 +23,7 @@ const objectIdValidator = (value, helpers) => {
   if (isValidObjectId(value)) {
     return value;
   }
-  return helpers.message("Invalid note id!");
+  return helpers.message("Invalid noteId");
 };
 
 export const noteIdSchema = {
@@ -35,10 +35,10 @@ export const noteIdSchema = {
 export const updateNoteSchema = {
     [Segments.BODY]: Joi.object({
         title: Joi.string().min(1),
-        content: Joi.string().allow(''),
-        tag: Joi.string().valid(...TAGS),
+        content: Joi.string().allow('').optional(),
+        tag: Joi.string().valid(...TAGS).optional(),
         }).min(1),
     [Segments.PARAMS]: Joi.object({
-        studentId: Joi.string().custom(objectIdValidator).required(),
+        noteId: Joi.string().custom(objectIdValidator).required(),
     }),
 };
