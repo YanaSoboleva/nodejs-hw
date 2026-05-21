@@ -2,7 +2,11 @@ import { Schema, model } from "mongoose";
 import { TAGS } from "../constants/tags.js";
 
 const noteSchema = new Schema(
-    {
+    {    userId: {
+          type: Schema.Types.ObjectId,
+          required: true,
+          ref: "User",
+        },
         title: {
             type: String,
             required: true,
@@ -25,8 +29,7 @@ const noteSchema = new Schema(
 );
 
 noteSchema.index({
-//   title: 1,
-//   content: 1,
+  userId: 1,
   tag: 1,
 });
 
