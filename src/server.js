@@ -10,6 +10,7 @@ import { errorHandler } from "./middleware/errorHandler.js";
 import { logger } from "./middleware/logger.js";
 import notesRoutes from "./routes/notesRoutes.js";
 import authRoutes from "./routes/authRoutes.js";
+import userRoutes from "./routes/authRoutes.js";
 
 const app = express(); //створення сервера
 
@@ -24,6 +25,7 @@ app.use(express.json()); //дозволяє обробляти данні у ф�
 app.use(cookieParser());
 app.use(notesRoutes);
 app.use(authRoutes);
+app.use(userRoutes);
 app.use(notFoundHandler);
 app.use(errors());
 app.use(errorHandler);
