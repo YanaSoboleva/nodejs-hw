@@ -11,7 +11,7 @@ router.patch(
   authenticate,
   // form
   // input name="user_avatar"
-  upload.single("user_avatar"),
+  upload.single("avatar"),
   updateUserAvatar,
 );
 
